@@ -13,8 +13,8 @@
 #Needed for i3-gaps
 #hide_edge_borders both
 for_window [class="^.*"] border pixel 2 
-gaps inner 15 
-gaps outer 15
+gaps inner 10 
+gaps outer 10
 
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
@@ -24,7 +24,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 12
+font pango:terminus 13
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -54,34 +54,23 @@ bindsym $mod+d exec rofi -show run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j  move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l  move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Down split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+Up split v
+
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -114,7 +103,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-bindsym $mod+shift+w workspace WeeChat
+bindsym $mod+shift+w workspace C
 
 # move focused container to workspace
 bindsym $mod+shift+1 move container to workspace 1
@@ -126,7 +115,7 @@ bindsym $mod+shift+6 move container to workspace 6
 bindsym $mod+shift+7 move container to workspace 7
 bindsym $mod+shift+8 move container to workspace 8
 bindsym $mod+shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace WeeChat
+bindsym $mod+Shift+0 move container to workspace C
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -204,14 +193,18 @@ for_window [class="Pavucontrol"] floating enable
 for_window [class="Pavucontrol"] resize shrink left 100, resize shrink right 100, resize shrink down 50, resize shrink up 50
 
 # Wallpaper settings
-exec--no-startup-id  nitrogen --restore
+exec --no-startup-id  nitrogen --restore
 
 #Transparency
 exec --no-startup-id compton
 
 # Program exec
 bindsym $mod+b exec librewolf
+bindsym $mod+c exec element-desktop
 
-#Language switching
-exec --no-startup "sestxkbmap -layout us,ru"
+# Autotiling
+exec --no-startup-id autotiling
+
+# Language switching
+exec --no-startup "setxkbmap -layout us,ru"
 exec --no-startup "setxkbmap -option 'grp:alt_shift_toggle'"
