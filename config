@@ -1,8 +1,3 @@
-# i3 config file (v4)
-#
-# Please see http://i3wm.org/docs/userguide.html for a complete reference!
-
-
 #Needed for i3-gaps
 #hide_edge_borders both
 for_window [class="^.*"] border pixel 2 
@@ -12,23 +7,10 @@ gaps outer 10
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
 
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
 font pango:terminus 13
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -41,10 +23,6 @@ bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -64,7 +42,6 @@ bindsym $mod+Down split h
 # split in vertical orientation
 bindsym $mod+Up split v
 
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -82,8 +59,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -115,7 +90,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+q exec i3 exit
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -144,7 +119,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Color settings
-
 set $bg-color 	         #7b7b7b
 set $inactive-bg-color   #5b5b5b
 set $text-color          #494949
@@ -158,10 +132,8 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #424242
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #424242
 
-#hide_edge_borders both
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# i3status bar
 bar{
 	position top
 	status_command i3status
@@ -175,12 +147,6 @@ bar{
 	}
 
 
-# Screensaver Settings
-#exec --no-startup-id xset dpms 600
-
-# Lock screen
-#bindsym $mod+F9 exec i3lock -c 000000 -i /home/mathisen/Images/lock.png
-
 # Floating programs
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Pavucontrol"] resize shrink left 100, resize shrink right 100, resize shrink down 50, resize shrink up 50
@@ -188,12 +154,11 @@ for_window [class="Pavucontrol"] resize shrink left 100, resize shrink right 100
 # Wallpaper settings
 exec --no-startup-id  nitrogen --restore
 
-#Transparency
+# Transparency
 exec --no-startup-id compton
 
-# Program exec
-bindsym $mod+b exec librewolf
-bindsym $mod+c exec element-desktop
+# Web browser
+bindsym $mod+b exec vieb 
 
 # Autotiling
 exec --no-startup-id autotiling
@@ -201,3 +166,6 @@ exec --no-startup-id autotiling
 # Language switching
 exec --no-startup "setxkbmap -layout us,ru"
 exec --no-startup "setxkbmap -option 'grp:alt_shift_toggle'"
+
+# Cursor hiding
+exec --no-startup-id unclutter
